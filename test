@@ -1,0 +1,6 @@
+#!/bin/bash
+
+a=$(date +"%Y-%m-%d")
+echo $a
+b=$(echo $a | cut -c "1-4")
+echo $b

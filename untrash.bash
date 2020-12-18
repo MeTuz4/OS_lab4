@@ -1,11 +1,35 @@
 #!/bin/bash
 
+if ! [[ -e $HOME/.trash ]]
+then
+    echo "Корзина не обнаружена"
+    exit 1
+fi
+
+if ! [[ -d $HOME/.trash ]]
+then
+    echo "Корзина не обнаружена"
+    exit 2
+fi
+
+if ! [[ -e $HOME/.trash/.trash.log ]]
+then
+    echo ".trash.log не обнаружен"
+    exit 4
+fi
+
 if [[ $# != 1 ]]
 then
-    exit
+    exit 3
 fi
 
 fileName="$1"
+
+if ! [[ $(grep $fileName "$HOME/.trash/.trash.log") == "" ]]
+then
+    echo "Файлов с таким именем нет"
+    exit 5
+fi
 
 grep $fileName $HOME/.trash.log |
 while read line
@@ -58,7 +82,7 @@ do
 	    fi
 	;;
 	*)
-	    echo kek
+	    continue
 	;;
     esac
 done
