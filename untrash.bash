@@ -46,7 +46,7 @@ do
 	    then
 		if [ -d $dir ]
 		then
-		    read -p "$dir существует."
+		    echo "$dir существует."
 		    while [ -f $filePath ]
 		    do
 			if [ -f $filePath ]
